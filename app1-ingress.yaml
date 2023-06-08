@@ -1,0 +1,22 @@
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  name: app1-ingress
+  annotations:
+    cert-manager.io/cluster-issuer: letsencrypt-prod
+spec:
+  tls:
+    - hosts:
+        - ac96a5c37d20a48ffa6ba258d86764af-1888749595.us-east-2.elb.amazonaws.com
+      secretName: app1-tls
+  rules:
+    - host: ac96a5c37d20a48ffa6ba258d86764af-1888749595.us-east-2.elb.amazonaws.com
+      http:
+        paths:
+          - path: /
+            pathType: Prefix
+            backend:
+              service:
+                name: app1-service
+                port:
+                  number: 80
