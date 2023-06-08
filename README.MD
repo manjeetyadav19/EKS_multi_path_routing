@@ -21,10 +21,11 @@ kubectl config current-context
 aws configure
 aws eks update-kubeconfig --region us-east-2 --name my-cluster
 
-       docker tag app_image:latest 896757523510.dkr.ecr.us-east-2.amazonaws.com/sampleapp:latest
+docker tag app_image:latest 896757523510.dkr.ecr.us-east-2.amazonaws.com/sampleapp:latest
      
-       aws ecr get-login-password --region us-east-2 | docker login --username AWS --password-stdin 896757523510.dkr.ecr.us-east-2.amazonaws.com
+aws ecr get-login-password --region us-east-2 | docker login --username AWS --password-stdin 896757523510.dkr.ecr.us-east-2.amazonaws.com
+
 kubectl apply -f app1-deployment.yaml
 kubectl apply -f app1-service.yaml
-  kubectl apply -f ingress.yaml
+kubectl apply -f ingress.yaml
 kubectl get all
